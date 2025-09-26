@@ -3,7 +3,7 @@
 
 ### Authors:
 - Flores-Ortiz, M. A.
-* Mier-Jimenez, R. S.
+* López-López, E.R.
 + Aguilar-Granda, A.
 
 #
