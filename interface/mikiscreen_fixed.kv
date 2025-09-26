@@ -1,0 +1,249 @@
+
+<MikiScreen>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1  
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: "MIK-I"
+        size_hint: None, None
+        size: 1150, 40
+        pos: 0, 620
+        color: 0, 0, 0, 1
+        canvas.before:
+            Color:
+                rgba: 0.5, 0.5, 0.5, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    FloatLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        FloatLayout:
+            id: layout
+
+            Label:
+                text: "Pump Control Panel"
+                size_hint: None, None
+                size: self.texture_size
+                pos: 30, 660
+                font_size: 22
+
+            # Inputs y etiquetas para cada bomba (0 a 9)
+
+            TextInput:
+                id: vol0
+                text: "0"
+                on_focus:
+                    if self.focus: self.text = ""
+                multiline: False
+                size_hint: None, None
+                size: 80, 30
+                pos_hint: {"x": 0.10, "y": 0.58}
+
+
+            TextInput:
+                id: vol1
+                text: "0"
+                on_focus:
+                    if self.focus: self.text = ""
+                multiline: False
+                size_hint: None, None
+                size: 80, 30
+                pos_hint: {"x": 0.285, "y": 0.58}
+
+
+            TextInput:
+                id: vol2
+                text: "0"
+                on_focus:
+                    if self.focus: self.text = ""
+                multiline: False
+                size_hint: None, None
+                size: 80, 30
+                pos_hint: {"x": 0.485, "y": 0.58}
+
+
+            TextInput:
+                id: vol3
+                text: "0"
+                on_focus:
+                    if self.focus: self.text = ""
+                multiline: False
+                size_hint: None, None
+                size: 80, 30
+                pos_hint: {"x": 0.683, "y": 0.58}
+
+
+            TextInput:
+                id: vol4
+                text: "0"
+                on_focus:
+                    if self.focus: self.text = ""
+                multiline: False
+                size_hint: None, None
+                size: 80, 30
+                pos_hint: {"x": 0.88, "y": 0.58}
+
+
+            TextInput:
+                id: vol5
+                text: "0"
+                on_focus:
+                    if self.focus: self.text = ""
+                multiline: False
+                size_hint: None, None
+                size: 80, 30
+                pos_hint: {"x": 0.18, "y": 0.2}
+
+
+            TextInput:
+                id: vol6
+                text: "0"
+                on_focus:
+                    if self.focus: self.text = ""
+                multiline: False
+                size_hint: None, None
+                size: 80, 30
+                pos_hint: {"x": 0.359, "y": 0.2}
+
+
+            TextInput:
+                id: vol7
+                text: "0"
+                on_focus:
+                    if self.focus: self.text = ""
+                multiline: False
+                size_hint: None, None
+                size: 80, 30
+                pos_hint: {"x": 0.54, "y": 0.2}
+
+
+            TextInput:
+                id: vol8
+                text: "0"
+                on_focus:
+                    if self.focus: self.text = ""
+                multiline: False
+                size_hint: None, None
+                size: 80, 30
+                pos_hint: {"x": 0.72, "y": 0.2}
+
+
+            TextInput:
+                id: vol9
+                text: "0"
+                on_focus:
+                    if self.focus: self.text = ""
+                multiline: False
+                size_hint: None, None
+                size: 80, 30
+                pos_hint: {"x": 0.90, "y": 0.2}
+
+            Label:
+                text: "Stir Time"
+                pos_hint: {"x": 0.5, "y": 0.1}
+            TextInput:
+                id: stir_time
+                text: "0"
+                multiline: False
+                size_hint: None, None
+                size: 80, 30
+                pos_hint: {"x": 0.68, "y": 0.04}
+
+            Button:
+                text: "START"
+                id: srtButton
+                size_hint: None, None
+                size: 220, 60
+                font_size: 32
+                pos_hint: {"x": 0.77, "y": 0.03}
+                on_press: root.chyorn()
+
+            Button:
+                text: "RESET"
+                size_hint: None, None
+                size: 100, 50
+                font_size: 22
+                pos_hint: {"x": 0.07, "y": 0.035}
+                on_press: root.clr_text()
+
+            ToggleButton:
+                id: parallel
+                text: "Parallel"
+                group: "modo"
+                size_hint: None, None
+                size: 90, 45
+                pos: 320, 25
+                font_size:18
+                bold: True
+                background_normal: ""
+                background_color: (0.2,0.6,0.3,0.75)
+                on_state: root.set_moodWork(self)
+
+            ToggleButton:
+                id: inorder
+                text: "In-Order"
+                group: "modo"
+                size_hint: None, None
+                size: 90, 45
+                pos: 220, 25
+                font_size:18
+                bold: True
+                background_normal: ""
+                background_color: (0.2,0.6,0.3,0.75)
+                on_state: root.set_moodWork(self)
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: None, None
+                size: 300, 40
+                pos_hint: {"x": 0.4, "y": 0.03}
+                spacing: 10
+
+                CheckBox:
+                    id: checkno
+                    group: "options"
+                    on_active: root.set_stirringStage(0, self.active)
+
+                Label:
+                    text: "No"
+                    color: 0, 0, 0, 1
+
+                CheckBox:
+                    id: check1
+                    group: "options"
+                    on_active: root.set_stirringStage(1, self.active)
+
+                Label:
+                    text: "1"
+                    color: 0, 0, 0, 1
+
+                CheckBox:
+                    id: check2
+                    group: "options"
+                    on_active: root.set_stirringStage(2, self.active)
+
+                Label:
+                    text: "2"
+                    color: 0, 0, 0, 1
+
+                CheckBox:
+                    id: check3
+                    group: "options"
+                    on_active: root.set_stirringStage(3, self.active)
+
+                Label:
+                    text: "3"
+                    color: 0, 0, 0, 1 
+                
+		
